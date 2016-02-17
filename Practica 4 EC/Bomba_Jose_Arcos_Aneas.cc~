@@ -1,0 +1,60 @@
+//------------------------------------------------------------------------
+// bomba-g.cc
+//------------------------------------------------------------------------
+
+#include <chrono>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+//------------------------------------------------------------------------
+
+void explotar()
+{
+	std::cout << std::endl
+	          << "##########################################" << std::endl
+	          << "#            booooooooooooom!!!          #" << std::endl
+	          << "##########################################" << std::endl;
+	exit(1);
+}
+
+//------------------------------------------------------------------------
+
+void desactivar()
+{
+	std::cout << std::endl
+	          << "##########################################" << std::endl
+	          << "#          bomba desactivada :)          #" << std::endl
+	          << "##########################################" << std::endl;
+	exit(0);
+}
+
+//------------------------------------------------------------------------
+
+template<typename _tipo> void comparar(const _tipo& viejo, const char* msg)
+{
+	_tipo nuevo;
+
+	std::cout << "Introduzca " << msg << ": " << std::flush;
+
+	auto fin = std::chrono::system_clock::now() + std::chrono::seconds(5);
+
+	std::cin >> nuevo;
+
+	if (nuevo != viejo || std::chrono::system_clock::now() > fin)
+		explotar();
+}
+
+//------------------------------------------------------------------------
+
+int main()
+{
+	std::string clave1 = "califragilistico";
+	        int clave2 =  9876 ;
+
+	comparar(clave1, "clave1");
+	comparar(clave2, "clave2");
+	desactivar();
+}
+
+//------------------------------------------------------------------------
